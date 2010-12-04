@@ -2,7 +2,7 @@
 
 Name:       rubygem-%{oname}
 Version:    0.7.1
-Release:    %mkrel 1
+Release:    %mkrel 2
 Summary:    Rake-based Ruby Extension (C, Java) task generator
 Group:      Development/Ruby
 License:    MIT
@@ -10,8 +10,6 @@ URL:        http://github.com/luislavena/rake-compiler
 Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 Requires:   rubygems
-Requires:   rubygem(rspec) >= 1.2.9
-Requires:   rubygem(cucumber) >= 0.4.4
 BuildRequires: rubygems
 BuildArch:  noarch
 Provides:   rubygem(%{oname}) = %{version}
@@ -36,6 +34,10 @@ rmdir %{buildroot}%{ruby_gemdir}/bin
 find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/bin -type f | xargs chmod a+x
 
 find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/lib -type f -exec sed -i -e '/#!/d' {} \;
+# FIXME: Avoid unsatisfied dependencies
+sed -i -e '/rspec\|cucumber/d' %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/tasks/gem.rake
+sed -i -e '/rspec\|cucumber/d' %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/tasks/rspec.rake
+sed -i -e '/rspec.*1\.2\.9\|cucumber.*0\.4\.4/d' %{buildroot}%{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
 
 %clean
 rm -rf %buildroot
