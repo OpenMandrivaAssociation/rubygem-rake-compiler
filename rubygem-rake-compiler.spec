@@ -1,8 +1,8 @@
 %define oname rake-compiler
 
 Name:       rubygem-%{oname}
-Version:    0.7.1
-Release:    %mkrel 2
+Version:    0.7.5
+Release:    %mkrel 1
 Summary:    Rake-based Ruby Extension (C, Java) task generator
 Group:      Development/Ruby
 License:    MIT
@@ -34,10 +34,6 @@ rmdir %{buildroot}%{ruby_gemdir}/bin
 find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/bin -type f | xargs chmod a+x
 
 find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/lib -type f -exec sed -i -e '/#!/d' {} \;
-# FIXME: Avoid unsatisfied dependencies
-sed -i -e '/rspec\|cucumber/d' %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/tasks/gem.rake
-sed -i -e '/rspec\|cucumber/d' %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/tasks/rspec.rake
-sed -i -e '/rspec.*1\.2\.9\|cucumber.*0\.4\.4/d' %{buildroot}%{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
 
 %clean
 rm -rf %buildroot
@@ -46,6 +42,7 @@ rm -rf %buildroot
 %defattr(-, root, root, -)
 %{_bindir}/rake-compiler
 %dir %{ruby_gemdir}/gems/%{oname}-%{version}/
+%{ruby_gemdir}/gems/%{oname}-%{version}/Isolate
 %{ruby_gemdir}/gems/%{oname}-%{version}/bin/
 %{ruby_gemdir}/gems/%{oname}-%{version}/features/
 %{ruby_gemdir}/gems/%{oname}-%{version}/lib/
