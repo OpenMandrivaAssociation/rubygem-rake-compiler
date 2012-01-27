@@ -1,14 +1,13 @@
 %define oname rake-compiler
 
 Name:       rubygem-%{oname}
-Version:    0.7.5
-Release:    %mkrel 1
+Version:    0.8.0
+Release:    1
 Summary:    Rake-based Ruby Extension (C, Java) task generator
 Group:      Development/Ruby
 License:    MIT
 URL:        http://github.com/luislavena/rake-compiler
 Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 Requires:   rubygems
 BuildRequires: rubygems
 BuildArch:  noarch
@@ -24,7 +23,6 @@ Ruby extensions (C, Java) using Rake as glue.
 %build
 
 %install
-rm -rf %buildroot
 mkdir -p %{buildroot}%{ruby_gemdir}
 gem install --local --install-dir %{buildroot}%{ruby_gemdir} \
             --force --rdoc %{SOURCE0}
@@ -35,11 +33,7 @@ find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/bin -type f | xargs chm
 
 find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/lib -type f -exec sed -i -e '/#!/d' {} \;
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-, root, root, -)
 %{_bindir}/rake-compiler
 %dir %{ruby_gemdir}/gems/%{oname}-%{version}/
 %{ruby_gemdir}/gems/%{oname}-%{version}/Isolate
