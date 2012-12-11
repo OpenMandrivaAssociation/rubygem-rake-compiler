@@ -50,3 +50,34 @@ find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/lib -type f -exec sed -
 %doc %{ruby_gemdir}/gems/%{oname}-%{version}/History.txt
 %{ruby_gemdir}/cache/%{oname}-%{version}.gem
 %{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
+
+
+%changelog
+* Wed Feb 15 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.8.0-2
++ Revision: 774161
+- mass rebuild of ruby packages against ruby 1.9.1
+
+* Fri Jan 27 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.8.0-1
++ Revision: 769363
+- version update 0.8.0
+
+* Sat Dec 18 2010 Rémy Clouard <shikamaru@mandriva.org> 0.7.5-1mdv2011.0
++ Revision: 622891
+- Bump release
+- new version 0.7.5
+- remove ugly hack now that dependencies are fixed
+
+* Sat Dec 04 2010 Rémy Clouard <shikamaru@mandriva.org> 0.7.1-2mdv2011.0
++ Revision: 609237
+- FIXME: make rubygem-rake-compiler installable
+  The problem is that development dependencies include cucumber
+  in version >= 0.4.4 and < 0.5 while we have 0.9.4
+  and rspec >= 1.2.9 and < 1.3.0 while we have 2.0.1
+  These are development dependencies so I assume it should work without it
+  but a cleaner way would be to make it compatible with the versions we have
+  but I didn?\226?\128?\153t have time to dig into it to see what would change.
+
+* Thu Nov 04 2010 Rémy Clouard <shikamaru@mandriva.org> 0.7.1-1mdv2011.0
++ Revision: 593483
+- import rubygem-rake-compiler
+
