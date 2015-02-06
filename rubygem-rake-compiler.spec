@@ -2,7 +2,7 @@
 
 Name:       rubygem-%{oname}
 Version:    0.8.0
-Release:	2
+Release:	3
 Summary:    Rake-based Ruby Extension (C, Java) task generator
 Group:      Development/Ruby
 License:    MIT
