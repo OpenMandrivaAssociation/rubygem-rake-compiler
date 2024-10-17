@@ -6,7 +6,7 @@ Release:	3
 Summary:    Rake-based Ruby Extension (C, Java) task generator
 Group:      Development/Ruby
 License:    MIT
-URL:        http://github.com/luislavena/rake-compiler
+URL:        https://github.com/luislavena/rake-compiler
 Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
 Requires:   rubygems
 BuildRequires: rubygems
